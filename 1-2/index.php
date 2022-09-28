@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,17 +14,10 @@
   <?php
     $fruits = ['apple', 'orange', 'strawberry'];
     if (isset($_POST["value"])){
-      if(in_array($_POST["value"], $fruits)) {
-        echo "<span>{$_POST["value"]}は、配列に含まれています。</span>";
-      } else {
-        echo "<span>{$_POST["value"]}は、配列に含まれていません。</span>";
-      }
+      in_array($_POST["value"], $fruits) ?
+        "<span>{$_POST["value"]}は、配列に含まれています。</span>" :
+        "<span>{$_POST["value"]}は、配列に含まれていません。</span>";
     }
   ?>
 </body>
 </html>
-
-<?php
-
-?>
-
