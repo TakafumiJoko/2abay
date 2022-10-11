@@ -2,39 +2,44 @@
 <html lang="ja">
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>PHP課題1-4</title>
 	</head>
 	<body>
 		<form method="post">
 			<select name="janken">
-				<option value="グー">グー</option>
+				<option value="グー" selected>グー</option>
 				<option value="チョキ">チョキ</option>
 				<option value="パー">パー</option>
 			</select>
+			<br>
 			<input type="submit" value="じゃんけん！">
 		</form>
 		<?php 
 		function janken($usr, $cpu){
-			if($usr === $cpu) {
-				return "draw";
-			}
-			if($usr === "グー" && $cpu === "チョキ") {
-				return "win";
-			}
-			if($usr === "チョキ" && $cpu === "パー") {
-				return "win";
-			} 
-			if($usr === "パー" && $cpu === "グー") {
-				return "win";
-			}
-			if($usr === "チョキ" && $cpu === "グー") {
-				return "lose";
-			}
-			if($usr === "パー" && $cpu === "チョキ") {
-				return "lose";
-			} 
-			if($usr === "グー" && $cpu === "パー") {
-				return "lose";
+			switch ($usr) {
+				case $cpu:
+					return "draw";
+				case "グー":
+					if($cpu === "チョキ") {
+						return "win";
+					}
+					if($cpu === "パー") {
+						return "lose";
+					}
+				case "チョキ":
+					if($cpu === "パー") {
+						return "win";
+					}
+					if($cpu === "グー") {
+						return "lose";
+					}
+				case "パー":
+					if($cpu === "グー") {
+						return "win";
+					}
+					if($cpu === "チョキ") {
+						return "lose";
+					}
 			}
 		}
 		if (isset($_POST["janken"])) {
@@ -43,14 +48,16 @@
 			$key = array_rand($hands);
 			$cpu = $hands[$key];
 			$result = janken($usr, $cpu);
-			if($result === "win") {
-				$message = "あなたの勝利です！";
-			}
-			if($result === "draw") {
-				$message = "あいこ";
-			}
-			if($result === "lose") {
-				$message = "あなたの敗北です。。。";
+			switch($result) {
+				case "win":
+					$message = "あなたの勝利です！";
+					break;
+				case "draw":
+					$message = "あいこ";
+					break;
+				case "lose":
+					$message = "あなたの敗北です。。。";
+					break;
 			}
 			echo "<p>自分:{$usr}</p>";
 			echo "<p>相手:{$cpu}</p>";
