@@ -17,14 +17,16 @@
 		</form>
 		<h2>【出力】</h2>
 		<?php
-		if(isset($_POST["fizz"]) && isset($_POST["buzz"])){
-			if($_POST["fizz"]>0 && $_POST["buzz"]>0) {
-				for($i=1;$i<100;$i++){
-					if(($i%$_POST["fizz"]) === 0 && ($i%$_POST["buzz"]) === 0) {
+		if(isset($fizz]) && isset($buzz)){
+	 		$fizz = $_POST["fizz"];
+			$buzz = $_POST["buzz"];
+			if(is_int($fizz) && is_int($buzz)) {
+				for($i = 1; $i < 100; $i++){
+					if(($i % $fizz) === 0 && ($i % $buzz) === 0) {
 						echo "<span>FizzBuzz {$i}</span><br>";
-					} elseif($i%$_POST["fizz"] === 0) {
+					} elseif($i % $fizz === 0) {
 						echo "<span>Fizz {$i}</span><br>";
-					} elseif($i%$_POST["buzz"] === 0) {
+					} elseif($i % $buzz === 0) {
 						echo "<span>Buzz {$i}</span><br>";
 					}
 				}
