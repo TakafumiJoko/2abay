@@ -39,7 +39,7 @@ catch(Exception $e)
 	<input type="text" name="name">
 	<br>
 	投稿内容:<br>
-	<textarea name="message" rows="15" cols="30">
+	<textarea name="content" rows="15" cols="30">
 	</textarea>
 	<br>
 	<input type="submit" value="投稿">
@@ -54,7 +54,7 @@ catch(Exception $e)
 	echo "<div class='post'>";
 	echo "No:{$post['id']}<br>";
 	echo "名前:{$post['name']}<br>";
-	echo "投稿内容:{$post['message']}<br>";
+	echo "投稿内容:{$post['content']}<br>";
 	echo "</div><br>";
 	}
 
