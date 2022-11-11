@@ -19,16 +19,16 @@ try
 	$dsn = 'mysql:dbname=twitter;host=localhost';
 	$user = 'root';
 	$password = '';
-	$dbh = new PDO($dsn, $user, $password);
-	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo = new PDO($dsn, $user, $password);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
-	$sql = 'INSERT INTO post (name, content) VALUES (?,?)';
-	$stmt = $dbh->prepare($sql);
+	$sql = 'INSERT INTO post (name, content) VALUES (?, ?)';
+	$stmt = $pdo->prepare($sql);
 	$data[] = $name;
 	$data[] = $content;
 	$stmt->execute($data);
 	
-	$dbh = null;
+	$pdo = null;
 }
 catch(Exception $e)
 {

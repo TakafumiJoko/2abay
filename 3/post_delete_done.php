@@ -8,24 +8,23 @@
 
 <?php
 
-$id = $_POST['id'];
+$postId = $_POST['id'];
 
-$id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
+$postId = htmlspecialchars($postId, ENT_QUOTES, 'UTF-8');
 
 try
 {
 	$dsn = 'mysql:dbname=twitter;host=localhost';
 	$user = 'root';
 	$password = '';
-	$dbh = new PDO($dsn, $user, $password);
-	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo = new PDO($dsn, $user, $password);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
-	$sql = 'DELETE FROM post WHERE id=?';
-	$stmt = $dbh->prepare($sql);
-	$data[] = $id;
-	$stmt->execute($data);
+	$sql = "DELETE FROM post WHERE id= {$postId}";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
 	
-	$dbh = null;
+	$pdo = null;
 }
 catch(Exception $e)
 {

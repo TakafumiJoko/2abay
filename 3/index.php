@@ -5,16 +5,16 @@ try
 	 $dsn = 'mysql:dbname=twitter;host=localhost';
 	 $user = 'root';
 	 $password = '';
-	 $dbh = new PDO($dsn, $user, $password);
-	 $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	 $pdo = new PDO($dsn, $user, $password);
+	 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
 	 $sql = 'SELECT * FROM post';
-	 $stmt = $dbh->prepare($sql);
+	 $stmt = $pdo->prepare($sql);
 	 $stmt->execute();
 	
 	 $posts = $stmt->fetchALL(PDO::FETCH_ASSOC);
 	
-	 $dbh = null;
+	 $pdo = null;
 }
 catch(Exception $e)
 {
