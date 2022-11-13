@@ -8,27 +8,23 @@
 
 <?php
 
-$name = $_POST['name'];
-$content = $_POST['content'];
+$postId = $_POST['id'];
 
-$name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
-$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
+$postId = htmlspecialchars($postId, ENT_QUOTES, 'UTF-8');
 
 try
 {
 	$dsn = 'mysql:dbname=twitter;host=localhost';
 	$user = 'root';
 	$password = '';
-	$dbh = new PDO($dsn, $user, $password);
-	$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	$pdo = new PDO($dsn, $user, $password);
+	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
-	$sql = 'INSERT INTO post (name, content) VALUES (?,?)';
-	$stmt = $dbh->prepare($sql);
-	$data[] = $name;
-	$data[] = $content;
-	$stmt->execute($data);
+	$sql = "DELETE FROM post WHERE id= {$postId}";
+	$stmt = $pdo->prepare($sql);
+	$stmt->execute();
 	
-	$dbh = null;
+	$pdo = null;
 }
 catch(Exception $e)
 {
@@ -38,7 +34,7 @@ catch(Exception $e)
 
 ?>
 
-<h2>投稿が完了しました。</h2>
+<h2>投稿の削除が完了しました。</h2>
 <form action="index.php">
 	<input type="button" value="投稿一覧へ戻る" onclick="history.back()">
 </form>
