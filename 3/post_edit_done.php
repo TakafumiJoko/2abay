@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="style.css">
 <title>ろくまる農園</title>
 </head>
 <body>
@@ -9,8 +10,17 @@
 <?php
 
 $postId = $_POST['id'];
+$name = $_POST['name'];
+$content = $_POST['content'];
+
+print $postId;
+print $name;
+print $content;
+
 
 $postId = htmlspecialchars($postId, ENT_QUOTES, 'UTF-8');
+$name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
+$content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
 
 try
 {
@@ -20,9 +30,12 @@ try
 	$pdo = new PDO($dsn, $user, $password);
 	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
-	$sql = "DELETE FROM post WHERE id = {$postId}";
+	$sql = "UPDATE post SET name = ?, content = ? WHERE id = ?";
 	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
+	$data[] = $name;
+	$data[] = $content;
+	$data[] = $postId;
+	$stmt->execute($data);
 	
 	$pdo = null;
 }
@@ -34,7 +47,7 @@ catch(Exception $e)
 
 ?>
 
-<h2>投稿の削除が完了しました。</h2>
+<h2>編集が完了しました。</h2>
 <button onclick="location.href='index.php'">投稿一覧へ戻る</button>
 </body>
 </html>
