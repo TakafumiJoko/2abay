@@ -13,11 +13,11 @@
   </form>
   <?php
     $fruits = ['apple', 'orange', 'strawberry'];
-    if (isset($_POST["value"])){
+  if (isset($_POST["value"])) {
       in_array($_POST["value"], $fruits) ?
         "<span>{$_POST["value"]}は、配列に含まれています。</span>" :
         "<span>{$_POST["value"]}は、配列に含まれていません。</span>";
-    }
+  }
   ?>
 </body>
 </html>

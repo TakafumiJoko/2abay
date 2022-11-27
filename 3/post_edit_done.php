@@ -22,27 +22,24 @@ $postId = htmlspecialchars($postId, ENT_QUOTES, 'UTF-8');
 $name = htmlspecialchars($name, ENT_QUOTES, 'UTF-8');
 $content = htmlspecialchars($content, ENT_QUOTES, 'UTF-8');
 
-try
-{
-	$dsn = 'mysql:dbname=twitter;host=localhost';
-	$user = 'root';
-	$password = '';
-	$pdo = new PDO($dsn, $user, $password);
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	
-	$sql = "UPDATE post SET name = ?, content = ? WHERE id = ?";
-	$stmt = $pdo->prepare($sql);
-	$data[] = $name;
-	$data[] = $content;
-	$data[] = $postId;
-	$stmt->execute($data);
-	
-	$pdo = null;
-}
-catch(Exception $e)
-{
-	print 'ただいま障害が発生しております。ご迷惑をお掛けしております。';
-	exit();
+try {
+    $dsn = 'mysql:dbname=twitter;host=localhost';
+    $user = 'root';
+    $password = '';
+    $pdo = new PDO($dsn, $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = "UPDATE post SET name = ?, content = ? WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $data[] = $name;
+    $data[] = $content;
+    $data[] = $postId;
+    $stmt->execute($data);
+
+    $pdo = null;
+} catch(Exception $e) {
+    print 'ただいま障害が発生しております。ご迷惑をお掛けしております。';
+    exit();
 }
 
 ?>

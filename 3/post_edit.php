@@ -1,27 +1,24 @@
 <?php
 
-try
-{
-	$postId = $_POST['id'];
+try {
+    $postId = $_POST['id'];
 
-	$dsn = 'mysql:dbname=twitter;host=localhost';
-	$user = 'root';
-	$password = '';
-	$pdo = new PDO($dsn, $user, $password);
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	
-	$sql = "SELECT * FROM post WHERE id = {$postId}";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	
-	$post = $stmt->fetch(PDO::FETCH_ASSOC);
-	
-	$pdo = null;
-}
-catch(Exception $e)
-{
-	print 'ただいま障害が発生しております。ご迷惑をお掛けしております。';
-	exit();
+    $dsn = 'mysql:dbname=twitter;host=localhost';
+    $user = 'root';
+    $password = '';
+    $pdo = new PDO($dsn, $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = "SELECT * FROM post WHERE id = {$postId}";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $post = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    $pdo = null;
+} catch(Exception $e) {
+    print 'ただいま障害が発生しております。ご迷惑をお掛けしております。';
+    exit();
 }
 
 ?>

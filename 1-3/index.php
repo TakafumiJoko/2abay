@@ -19,8 +19,8 @@ $answer["回答4"] = "東京";
 
 echo "<h3>問題 {$question["問題"]}</h3>";
 
-foreach($answer as $key => $value) {
-  echo "<p>{$key} {$value}</p>";
+foreach ($answer as $key => $value) {
+    echo "<p>{$key} {$value}</p>";
 }
 
 ?>

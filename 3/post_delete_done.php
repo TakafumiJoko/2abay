@@ -12,24 +12,21 @@ $postId = $_POST['id'];
 
 $postId = htmlspecialchars($postId, ENT_QUOTES, 'UTF-8');
 
-try
-{
-	$dsn = 'mysql:dbname=twitter;host=localhost';
-	$user = 'root';
-	$password = '';
-	$pdo = new PDO($dsn, $user, $password);
-	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	
-	$sql = "DELETE FROM post WHERE id = {$postId}";
-	$stmt = $pdo->prepare($sql);
-	$stmt->execute();
-	
-	$pdo = null;
-}
-catch(Exception $e)
-{
-	print 'ただいま障害が発生しております。ご迷惑をお掛けしております。';
-	exit();
+try {
+    $dsn = 'mysql:dbname=twitter;host=localhost';
+    $user = 'root';
+    $password = '';
+    $pdo = new PDO($dsn, $user, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    $sql = "DELETE FROM post WHERE id = {$postId}";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+
+    $pdo = null;
+} catch(Exception $e) {
+    print 'ただいま障害が発生しております。ご迷惑をお掛けしております。';
+    exit();
 }
 
 ?>
