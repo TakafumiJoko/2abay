@@ -11,15 +11,14 @@
             <input type="submit" value="OK"></input>
         </form>
         <?php
-            if (isset($_POST["answer"])){
-              $result = "";
-              if ($_POST['answer'] === "東京") {
-                  $result = "正解";
-              }
-              else {
-                  $result = "不正解";
-              }
-              echo $result;
+            if (isset($_POST["answer"])) {
+                $result = "";
+                if ($_POST['answer'] === "東京") {
+                    $result = "正解";
+                } else {
+                    $result = "不正解";
+                }
+                echo $result;
             }
         ?>
     </body>
