@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="style.css">
-<title>ろくまる農園</title>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<title>ろくまる農園</title>
 </head>
+
 <body>
 
-<?php
+	<?php
 
 $postId = $_POST['id'];
 $name = $_POST['name'];
@@ -44,7 +46,8 @@ try {
 
 ?>
 
-<h2>編集が完了しました。</h2>
-<button onclick="location.href='index.php'">投稿一覧へ戻る</button>
+	<h2>編集が完了しました。</h2>
+	<button onclick="location.href='index.php'">投稿一覧へ戻る</button>
 </body>
+
 </html>

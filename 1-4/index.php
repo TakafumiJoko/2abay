@@ -27,7 +27,6 @@
                     if ($cpu === "パー") {
                         return "lose";
                     }
-                    // no break
                 case "チョキ":
                     if ($cpu === "パー") {
                         return "win";
@@ -35,7 +34,6 @@
                     if ($cpu === "グー") {
                         return "lose";
                     }
-                    // no break
                 case "パー":
                     if ($cpu === "グー") {
                         return "win";
